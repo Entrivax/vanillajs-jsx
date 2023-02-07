@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "lib": ["DOM", "ESNext"],
+        "jsx": "preserve",
+        "jsxFactory": "h",
+        "jsxFragmentFactory": "Frag"
+    },
+    "files": ["src/main.jsx"]
+}
