@@ -1,7 +1,6 @@
 # VanillaJS JSX
 
-This is an simple example project using JSX with VanillaJS. It uses Babel to transpile the single `main.jsx` file in the `src` folder.
-I didn't want to add a packager like Webpack or anything to keep things simple.
+This is an simple example project using JSX with VanillaJS. It uses Babel and Rollup to transpile and pack jsx files in the `src` folder.
 
 ## Prerequisite
 
