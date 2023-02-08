@@ -59,7 +59,12 @@ function h(tag, props, ...children) {
         return tag({ ref, ...props }, ...children)
     }
 
-    const element = document.createElement(tag)
+    let element;
+    if (tag in { svg: 0, g: 0, path: 0, text: 0, symbol: 0, use: 0, circle: 0, ellipse: 0, line: 0, polygon: 0, polyline: 0, rect: 0, defs: 0, filter: 0, image: 0 }) {
+        element = document.createElementNS('http://www.w3.org/2000/svg', tag)
+    } else {
+        element = document.createElement(tag)
+    }
 
     for (let key of Object.keys(_props)) {
         const propVal = _props[key]
