@@ -4,9 +4,11 @@
         "jsx": "preserve",
         "jsxFactory": "h",
         "jsxFragmentFactory": "Frag",
+        "allowJs": true,
         "checkJs": true,
         "noImplicitAny": false,
-        "strict": true
+        "strict": true,
+        "outDir": "dist"
     },
-    "exclude": ["dist/*"]
+    "include": ["src/**/*"]
 }
