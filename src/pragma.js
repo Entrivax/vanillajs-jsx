@@ -28,7 +28,7 @@ export function h(tag, props, ...children) {
         if (typeof propVal === 'function') {
             // If prop value is a function, treat it as an event listener
             /** @type {any} */(element)[key] = propVal
-        } else if (propVal) {
+        } else if (propVal != null) {
             if (key === 'className') {
                 const classes = (propVal.toString(10) || '').trim().split(' ')
                 for (let className of classes) {
@@ -36,8 +36,18 @@ export function h(tag, props, ...children) {
                         element.classList.add(className)
                     }
                 }
+            } else if (key === 'style') {
+                if (typeof propVal === 'object') {
+                    for (let styleProp of Object.keys(propVal)) {
+                        if (propVal[styleProp]) {
+                            element.style.setProperty(styleProp, propVal[styleProp])
+                        }
+                    }
+                } else {
+                    element.setAttribute(key, propVal.toString() || '')
+                }
             } else {
-                element.setAttribute(key, _props[key]?.toString() || '')
+                element.setAttribute(key, propVal.toString() || '')
             }
         }
     }
