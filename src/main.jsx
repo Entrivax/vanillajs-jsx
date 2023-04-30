@@ -24,6 +24,6 @@ function App(props, ...children) {
 
         {children}
         
-        <button onclick={() => alert('Yay')}>Click</button>
+        <button onclick={() => alert('Yay')}>Show alert</button>
     </>
 }

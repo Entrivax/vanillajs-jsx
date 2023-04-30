@@ -12,6 +12,7 @@
  */
 export function h(tag, props, ...children) {
     const { ref, ..._props } = props || {}
+
     if (typeof tag === 'function') {
         return tag({ ref, ...props }, ...children)
     }
@@ -25,9 +26,10 @@ export function h(tag, props, ...children) {
 
     for (let key of Object.keys(_props)) {
         const propVal = _props[key]
-        if (typeof propVal === 'function') {
-            // If prop value is a function, treat it as an event listener
-            /** @type {any} */(element)[key] = propVal
+        if (key.startsWith('on')) {
+            const capture = key.endsWith('Capture')
+            const _key = capture ? key.slice(2, -7) : key.slice(2)
+            element.addEventListener(_key.toLowerCase(), /** @type {EventListenerOrEventListenerObject} */(propVal), capture)
         } else if (propVal != null) {
             if (key === 'className') {
                 const classes = (propVal.toString(10) || '').trim().split(' ')
