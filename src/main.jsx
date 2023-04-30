@@ -1,17 +1,17 @@
-import Test from './test.jsx'
+import Hello from './helloWorld'
 import { h, Frag } from './pragma.js'
 import { useRef } from './helpers.jsx'
 
-let divRef = useRef()
+let divRef = /** @type import('./helpers.jsx').Ref<HTMLDivElement | null> */(useRef(null))
 
 document.body.appendChild(
     <App aValue={'1'}>
         Hi
         <div style="margin-top: 5em" ref={divRef}><small>How are you?</small></div>
-        <Test />
+        <Hello world="World" />
     </App>
 )
-console.log(divRef.current)
+console.log(divRef())
 
 /**
  * 
