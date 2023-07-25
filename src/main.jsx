@@ -8,6 +8,10 @@ document.body.appendChild(
     <App aValue={'1'}>
         Hi
         <div style="margin-top: 5em" ref={divRef}><small>How are you?</small></div>
+
+        <div contenteditable={true}>Editable content</div>
+        <div contenteditable={false}>Not editable content</div>
+
         <Hello world="World" />
     </App>
 )

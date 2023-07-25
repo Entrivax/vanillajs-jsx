@@ -1,7 +1,7 @@
 // #region JSX Pragma
 
 /** @typedef {((props: any, ...children: any[]) => Node) | string} Tag */
-/** @typedef {Record<string, string | Function | number | null | undefined>} Props */
+/** @typedef {Record<string, string | Function | number | boolean | null | undefined>} Props */
 /** @typedef {string | Node} Child */
 
 /**
@@ -48,7 +48,7 @@ export function h(tag, props, ...children) {
                 } else {
                     element.setAttribute(key, propVal.toString() || '')
                 }
-            } else {
+            } else if (typeof propVal !== 'boolean' || propVal === true) {
                 element.setAttribute(key, propVal.toString() || '')
             }
         }
