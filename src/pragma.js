@@ -18,8 +18,9 @@ export function h(tag, props, ...children) {
     }
 
     let element;
-    if (tag in { svg: 0, g: 0, path: 0, text: 0, symbol: 0, use: 0, circle: 0, ellipse: 0, line: 0, polygon: 0, polyline: 0, rect: 0, defs: 0, filter: 0, image: 0 }) {
-        element = document.createElementNS('http://www.w3.org/2000/svg', tag)
+    let indexOfColon = tag.indexOf(':')
+    if (indexOfColon !== -1 && tag.slice(0, indexOfColon) === 'svg') {
+        element = document.createElementNS('http://www.w3.org/2000/svg', tag.slice(indexOfColon + 1))
     } else {
         element = document.createElement(tag)
     }

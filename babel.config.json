@@ -14,7 +14,19 @@
             {
                 "pragma": "h",
                 "pragmaFrag": "Frag",
-                "runtime": "classic"
+                "runtime": "classic",
+                "throwIfNamespace": false
+            }
+        ]
+    ],
+    "plugins": [
+        [
+            "@babel/plugin-transform-react-jsx",
+            {
+                "runtime": "classic", // defaults to classic
+                "pragma": "h",
+                "pragmaFrag": "Frag",
+                "throwIfNamespace": false
             }
         ]
     ]
