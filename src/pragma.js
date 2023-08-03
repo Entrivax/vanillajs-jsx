@@ -55,7 +55,7 @@ export function h(tag, props, ...children) {
         }
     }
 
-    const _children = children && children.length > 0 && children.flat()
+    const _children = children && children.length > 0 && children.flat().filter(c => c instanceof Node || typeof c === 'string')
     if (_children && _children.length > 0) {
         element.append(..._children)
     }
@@ -75,9 +75,10 @@ export function h(tag, props, ...children) {
  */
 export function Frag(props, ...children){
     const frag = document.createDocumentFragment()
-    
-    if (children && children.length > 0) {
-        frag.append(...(children.flat()))
+
+    const _children = children && children.length > 0 && children.flat().filter(c => c instanceof Node || typeof c === 'string')
+    if (_children && _children.length > 0) {
+        frag.append(..._children)
     }
 
     return frag
