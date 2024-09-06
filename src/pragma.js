@@ -14,7 +14,11 @@ export function h(tag, props, ...children) {
     const { ref, ..._props } = props || {}
 
     if (typeof tag === 'function') {
-        return tag({ ref, ...props }, ...children)
+        const tagValue = tag({ ref, ...props }, ...children)
+        if (typeof ref === 'function') {
+            ref(tagValue)
+        }
+        return tagValue
     }
 
     let element;
@@ -42,7 +46,7 @@ export function h(tag, props, ...children) {
             } else if (key === 'style') {
                 if (typeof propVal === 'object') {
                     for (let styleProp of Object.keys(propVal)) {
-                        if (propVal[styleProp]) {
+                        if (propVal[styleProp] != null) {
                             element.style.setProperty(styleProp, propVal[styleProp])
                         }
                     }
